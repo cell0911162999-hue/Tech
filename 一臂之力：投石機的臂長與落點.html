@@ -6,9 +6,9 @@
 <meta name="description" content="一臂之力：國小六年級投石機臂長探究課程，結合自然與資訊科技，以預測、驗證、反思串起五節課。">
 <title>一臂之力：投石機的臂長與落點</title>
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--ink:#202322;--mute:#5f6663;--line:#dcd8cc;--acc:#0d6b50;--acc2:#e3f1ec;--warm:#fff1d6;--c1:#e0a93b;--c2:#4a90d9;--c3:#4caf50;--c4:#e0645c;--c5:#8b5cc7;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151819;--card:#202425;--ink:#ecebe6;--mute:#a4a8a3;--line:#3a3f40;--acc:#5fc1a6;--acc2:#1d322c;--warm:#3a3220;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#151819;--card:#202425;--ink:#ecebe6;--mute:#a4a8a3;--line:#3a3f40;--acc:#5fc1a6;--acc2:#1d322c;--warm:#3a3220;color-scheme:dark}
+:root{--bg:#f4ead9;--card:#fffaf0;--ink:#3b2a1a;--mute:#7a6650;--line:#dcc9a8;--acc:#a8480f;--acc2:#f7e0c6;--warm:#fff1d6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1710;--card:#2a2017;--ink:#f1e6d4;--mute:#bca88c;--line:#4a3a29;--acc:#f0a15f;--acc2:#3a2a1b;--warm:#3a3220;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1f1710;--card:#2a2017;--ink:#f1e6d4;--mute:#bca88c;--line:#4a3a29;--acc:#f0a15f;--acc2:#3a2a1b;--warm:#3a3220;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.8 "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
@@ -24,7 +24,9 @@ button,.btn{font:inherit;cursor:pointer;border:1px solid var(--acc);background:v
 .w{max-width:1000px;margin:auto;padding:0 16px}
 .hero{padding:44px 0 28px}
 .eyebrow{color:var(--acc);font-weight:700;letter-spacing:.05em}
-h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.25;margin:6px 0}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.25;margin:6px 0;color:var(--ink)}
+.hero{border-bottom:3px solid var(--acc)}
+.card,.step,details,.stat,.info div,.sim{box-shadow:0 2px 0 rgba(120,80,30,.12);border-radius:16px}
 .lead{font-size:1.1rem;color:var(--mute);max-width:42em}
 .q{background:var(--acc2);border-left:6px solid var(--acc);border-radius:10px;padding:14px 18px;margin:18px 0;font-weight:600}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}
@@ -72,7 +74,7 @@ footer{padding:26px 0 44px;color:var(--mute);font-size:.9rem;border-top:1px soli
 </style>
 </head>
 <body>
-<nav><b>一臂之力</b><a href="#overview">課程總覽</a><a href="#flow">教學流程</a><a href="#sim">小實驗室</a><a href="#units">單元設計</a><a href="#lesson">教案內容</a><a href="#kit">教具與安全</a><a href="#assess">評量規準</a><a href="#ws">學習單</a><button id="pr">列印說課單</button></nav>
+<nav><b>一臂之力</b><a href="#overview">課程總覽</a><a href="#flow">教學流程</a><a href="#sim">小實驗室</a><a href="#units">單元設計</a><a href="#lesson">教案內容</a><a href="#kit">教具與安全</a><a href="#assess">評量規準</a><a href="#ws">學習單</a><button id="pr">下載說課單（PDF）</button></nav>
 
 <div class="w">
 <header class="hero" id="overview">
@@ -135,11 +137,14 @@ footer{padding:26px 0 44px;color:var(--mute);font-size:.9rem;border-top:1px soli
 <div class="tw ws"><table><tr><th>排別</th><th>目標 1</th><th>目標 2</th><th>目標 3</th><th>目標 4</th><th>目標 5</th><th>命中數</th></tr><tr><td>前排</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>中排</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>後排</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>合計</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr></table></div>
 <h3>三、我的反思</h3>
 <div class="tw ws"><table><tr><td style="width:34%"><b>我們的策略（打哪一排、用哪種臂長）</b></td><td class="e"></td></tr><tr><td>遇到的問題</td><td class="e"></td></tr><tr><td>我們怎麼解決</td><td class="e"></td></tr><tr><td>特別的發現</td><td class="e"></td></tr><tr><td>模擬和實測一樣嗎？為什麼？</td><td class="e"></td></tr></table></div>
-<p class="noprint"><button class="p" id="pr2">列印這份學習單</button></p></section>
+<p class="noprint"><button class="p" id="pr2">下載學習單（PDF）</button></p></section>
 <footer>第五組　國小科技教育教案　教學設計：林宥潁、陳芊蕙、張鈞翔、黃楷媜。本頁為初稿，內容以教案文件為準。</footer>
 </div>
+<div id="toast" class="noprint" role="status" style="display:none;position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--card);padding:10px 18px;border-radius:999px;z-index:30;max-width:90vw;font-size:.95rem"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-var COLORS=["#e0a93b","#4a90d9","#4caf50","#e0645c","#8b5cc7"];
+var COLORS=["#c2571a","#3d6f8c","#d49a2a","#a8483e","#7a5a8c"];
 var L=[
 {t:"認識投石機",d:"比較三台不同臂長的投石機，動手轉動投射臂，選擇假設並提出預測。",tags:["三台並排","動手轉動","預測"],
  perf:"生議 k-III-1 能了解生活常見科技產品的用途與運作方式。",cont:"生議 A-III-2 日常科技產品的基本運作原理；自 INb-Ⅲ-4 力可藉由簡單機械傳遞。",
@@ -169,8 +174,33 @@ var L=[
 function E(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
 document.getElementById("steps").innerHTML=L.map(function(x,i){return'<div class="step" style="--c:'+COLORS[i]+'"><div class="n">第 '+(i+1)+' 節　40 分鐘</div><h3>'+E(x.t)+'</h3><div>'+E(x.d)+'</div>'+x.tags.map(function(t){return'<span class="tag">'+E(t)+'</span>'}).join("")+'</div>'}).join("");
 document.getElementById("lessons").innerHTML=L.map(function(x,i){return'<details style="--c:'+COLORS[i]+'"'+(i==0?" open":"")+'><summary><span class="dot"></span>第 '+(i+1)+' 節　'+E(x.t)+'<small>40 分鐘</small></summary><div class="body"><h4>學習目標</h4><ol class="s">'+x.goal.map(function(g){return'<li>'+E(g)+'</li>'}).join("")+'</ol><h4>對應課綱</h4><p><b>學習表現：</b>'+E(x.perf)+'<br><b>學習內容：</b>'+E(x.cont)+'</p><h4>活動步驟</h4><ol class="s">'+x.s.map(function(s){return'<li><span class="min">'+s[0]+' 分鐘</span>　<b>'+E(s[1])+'</b>：'+E(s[2])+'</li>'}).join("")+'</ol><h4>評量方式</h4><p>'+E(x.a)+'</p></div></details>'}).join("");
-function pr(){var d=document.querySelectorAll("details"),st=[];d.forEach(function(e){st.push(e.open);e.open=true});window.print();d.forEach(function(e,i){e.open=st[i]})}
-document.getElementById("pr").onclick=pr;document.getElementById("pr2").onclick=function(){window.print()};
+
+var ST='font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:#000;background:#fff;line-height:1.7;';
+function toast(m,keep){var t=document.getElementById("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);if(!keep)toast.h=setTimeout(function(){t.style.display="none"},7000)}
+function TB(h,rows){return'<table style="width:100%;border-collapse:collapse;font-size:15px"><tr>'+h.map(function(x){return'<th style="border:1px solid #888;padding:6px 8px;background:#f7e0c6;text-align:left">'+x+'</th>'}).join("")+'</tr>'+rows.map(function(r){return'<tr>'+r.map(function(x){return'<td style="border:1px solid #888;padding:6px 8px;vertical-align:top">'+x+'</td>'}).join("")+'</tr>'}).join("")+'</table>'}
+function sheetBlocks(){var b=[];
+ b.push('<div style="font-size:28px;font-weight:700;color:#a8480f">一臂之力：投石機的臂長與落點</div><div style="font-size:16px;margin:4px 0 10px">國小科技教育教案　說課單　第五組</div><div style="background:#f7e0c6;border-left:6px solid #a8480f;padding:10px 14px;font-weight:700;font-size:17px;margin:8px 0">核心問題：相同的橡皮筋與投射物，只改變投射臂的長度，球會落在哪裡？</div><div style="font-size:15px"><b>實施年級：</b>國小六年級　<b>節數：</b>5 節，共 200 分鐘　<b>跨領域：</b>科技、資訊、自然<br><b>核心素養：</b>A2 系統思考與解決問題、A3 規劃執行與創新應變、B1 符號運用與溝通表達、C2 人際關係與團隊合作<br><b>教學設備：</b>雷射切割投石機（短、中、長三種投射臂）、投射物、目標物、數位模擬網站、紙本學習單、試算表</div>');
+ b.push('<div style="font-size:20px;font-weight:700;color:#a8480f;margin-bottom:6px">單元設計</div>'+TB(["活動","主要任務","學習產出"],L.map(function(x,i){return['第 '+(i+1)+' 節　'+E(x.t),E(x.d),E(x.a)]})));
+ L.forEach(function(x,i){b.push('<div style="border-top:8px solid '+COLORS[i]+';padding-top:8px"><div style="font-size:21px;font-weight:700">第 '+(i+1)+' 節　'+E(x.t)+'（40 分鐘）</div><div style="font-size:15px;margin:6px 0"><b>學習目標：</b><br>'+x.goal.map(function(g,j){return(j+1)+'. '+E(g)}).join("<br>")+'<br><b>學習表現：</b>'+E(x.perf)+'<br><b>學習內容：</b>'+E(x.cont)+'</div>'+TB(["時間","活動","內容"],x.s.map(function(s){return[s[0]+' 分鐘','<b>'+E(s[1])+'</b>',E(s[2])]}))+'<div style="font-size:15px;margin-top:6px"><b>評量方式：</b>'+E(x.a)+'</div></div>')});
+ b.push('<div style="font-size:20px;font-weight:700;color:#a8480f;margin-bottom:6px">評量規準</div>'+TB(["面向","評量重點","評量工具"],[["概念","能說明投石機各部位的功能，並用臂長概念解釋預測。","口頭問答、第一節學習單"],["模擬","能操作模擬器，記錄不同臂長的結果，指出三種變因。","模擬紀錄表"],["組裝","能依組裝圖完成投石機，安全使用工具並記錄問題。","教師巡視、零件檢核"],["資料","能記錄多次落點，比較模擬與實測，依資料擬定策略。","實驗記錄、挑戰紀錄"],["合作與反思","能說出問題、解決方法與發現，並回應同學提問。","口頭報告、自評互評表"]]));
+ return b}
+function wsBlock(){var c=document.getElementById("ws").cloneNode(true);c.querySelectorAll(".noprint").forEach(function(n){n.remove()});
+ return['<style>table{width:100%;border-collapse:collapse;font-size:15px}th,td{border:1px solid #888;padding:8px;text-align:left}th{background:#f7e0c6}td.e{height:34px}h2{font-size:24px;color:#a8480f;margin:0 0 6px}h3{font-size:17px;margin:14px 0 6px}p{margin:4px 0;font-size:15px}.kick{display:none}</style>'+c.innerHTML]}
+async function buildPDF(htmls,name){
+ toast("文件製作中，請稍等…",true);var pdf=new jspdf.jsPDF({unit:"mm",format:"a4"}),y=10,first=true;
+ try{
+  for(var i=0;i<htmls.length;i++){var el=document.createElement("div");el.style.cssText="position:fixed;left:0;top:0;z-index:-1;width:760px;padding:10px 14px;"+ST;el.innerHTML=htmls[i];document.body.appendChild(el);
+   var c=await html2canvas(el,{scale:2,backgroundColor:"#ffffff"});document.body.removeChild(el);
+   var w=190,h=c.height*w/c.width;if(h>277){w=w*277/h;h=277}
+   if(!first&&y+h>287){pdf.addPage();y=10}
+   pdf.addImage(c.toDataURL("image/jpeg",0.92),"JPEG",10,y,w,h);y+=h+4;first=false}
+  var blob=pdf.output("blob"),dl=(window.claude&&claude.use)?await claude.use("downloads"):null;
+  if(!dl){toast("這裡不能直接下載，請改用瀏覽器開啟這個網頁再試一次。");return}
+  try{await dl.save({filename:name,data:blob});toast("✅ 已下載「"+name+"」，請到「下載」資料夾找這個檔案。")}
+  catch(e){toast((e&&e.code=="declined")?"你選擇不下載。需要的話再按一次按鈕。":"下載沒有成功，請再試一次。")}
+ }catch(e){toast("文件沒有做成功，請再試一次。")}}
+document.getElementById("pr").onclick=function(){buildPDF(sheetBlocks(),"一臂之力說課單.pdf")};
+document.getElementById("pr2").onclick=function(){buildPDF(wsBlock(),"一臂之力第四節學習單.pdf")};
 </script>
 </body>
 </html>
