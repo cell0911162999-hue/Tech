@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="一臂之力：國小六年級投石機臂長探究課程，結合自然與資訊科技，以預測、驗證、反思串起五節課。">
+<title>一臂之力：投石機的臂長與落點</title>
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--ink:#202322;--mute:#5f6663;--line:#dcd8cc;--acc:#0d6b50;--acc2:#e3f1ec;--warm:#fff1d6;--c1:#e0a93b;--c2:#4a90d9;--c3:#4caf50;--c4:#e0645c;--c5:#8b5cc7;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151819;--card:#202425;--ink:#ecebe6;--mute:#a4a8a3;--line:#3a3f40;--acc:#5fc1a6;--acc2:#1d322c;--warm:#3a3220;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#151819;--card:#202425;--ink:#ecebe6;--mute:#a4a8a3;--line:#3a3f40;--acc:#5fc1a6;--acc2:#1d322c;--warm:#3a3220;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.8 "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+a{color:var(--acc)}
+nav{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top,0px)) 14px 8px;display:flex;gap:6px;align-items:center;overflow-x:auto;white-space:nowrap}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:11}
+nav b{color:var(--acc);margin-right:8px}
+nav a{text-decoration:none;color:var(--ink);padding:6px 10px;border-radius:999px;font-size:.92rem}
+nav a:hover{background:var(--acc2)}
+nav button{margin-left:auto}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--acc);background:var(--acc2);color:var(--acc);padding:7px 14px;border-radius:999px;text-decoration:none;display:inline-block}
+.btn.p,button.p{background:var(--acc);color:var(--card)}
+.w{max-width:1000px;margin:auto;padding:0 16px}
+.hero{padding:44px 0 28px}
+.eyebrow{color:var(--acc);font-weight:700;letter-spacing:.05em}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.25;margin:6px 0}
+.lead{font-size:1.1rem;color:var(--mute);max-width:42em}
+.q{background:var(--acc2);border-left:6px solid var(--acc);border-radius:10px;padding:14px 18px;margin:18px 0;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.stat b{display:block;font-size:1.25rem;color:var(--acc)}
+section{padding:34px 0}
+h2{font-size:1.7rem;margin:4px 0 6px}
+.kick{color:var(--acc);font-weight:700;font-size:.9rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card h3{margin:0 0 4px;font-size:1.1rem}
+.card .no{color:var(--acc);font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+.step{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--c);border-radius:14px;padding:12px;font-size:.95rem}
+.step .n{font-weight:700;color:var(--c)}
+.step h3{margin:2px 0;font-size:1.05rem}
+.tag{display:inline-block;background:var(--acc2);color:var(--acc);border-radius:999px;padding:0 9px;font-size:.8rem;margin:4px 4px 0 0}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--acc2)}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.info div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.93rem}
+.info b{display:block;color:var(--acc)}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:1.05rem;list-style:none;display:flex;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary .dot{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none}
+summary small{margin-left:auto;color:var(--mute);font-weight:400}
+details .body{padding-bottom:14px}
+details h4{margin:12px 0 4px;color:var(--acc)}
+ol.s{padding-left:1.3em;margin:6px 0}
+ol.s li{margin:6px 0}
+.min{font-weight:700;color:var(--acc)}
+.look{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.look .card .big{font-size:1.5rem}
+ul.l{padding-left:1.2em;margin:6px 0}
+.rub{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+.rub .card{font-size:.92rem}
+.sim{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:12px}
+.ws td.e{height:34px}
+footer{padding:26px 0 44px;color:var(--mute);font-size:.9rem;border-top:1px solid var(--line);margin-top:20px}
+@media (max-width:820px){.stats,.info{grid-template-columns:repeat(2,1fr)}.grid3,.look{grid-template-columns:1fr}.steps,.rub{grid-template-columns:1fr}}
+@media print{nav,.noprint,body::before{display:none!important}body{background:#fff;color:#000}details{break-inside:avoid}section{padding:14px 0}}
+</style>
+</head>
+<body>
+<nav><b>一臂之力</b><a href="#overview">課程總覽</a><a href="#flow">教學流程</a><a href="#sim">小實驗室</a><a href="#units">單元設計</a><a href="#lesson">教案內容</a><a href="#kit">教具與安全</a><a href="#assess">評量規準</a><a href="#ws">學習單</a><button id="pr">列印說課單</button></nav>
+
+<div class="w">
+<header class="hero" id="overview">
+<div class="eyebrow">科技領域教材教法課程　第五組</div>
+<h1>一臂之力：投石機的臂長與落點</h1>
+<p class="lead">學生先比較三台不同臂長的投石機，用數位模擬寫下預測，組裝並試射實體投石機，再用實測資料挑戰投準，最後依學習單說出遇到的問題、解決方法與發現。</p>
+<div class="q">核心問題：相同的橡皮筋與投射物，只改變投射臂的長度，球會落在哪裡？</div>
+<div class="bar"><a class="btn p" href="#lesson">看教案內容</a> <a class="btn" href="#ws">看學習單</a></div>
+<div class="stats"><div class="stat"><b>六年級</b>實施年級</div><div class="stat"><b>5 節</b>共 200 分鐘</div><div class="stat"><b>科技 × 資訊 × 自然</b>跨領域</div><div class="stat"><b>預測→驗證→反思</b>探究流程</div></div>
+</header>
+
+<section>
+<div class="kick">課程定位</div><h2>用預測與證據，說明自己的選擇</h2>
+<div class="grid3">
+<div class="card"><div class="no">01</div><h3>核心概念</h3>臂長與放球處的移動距離、操縱變因、控制變因與應變變因、多次測量的差異。</div>
+<div class="card"><div class="no">02</div><h3>學習表現</h3>能了解投石機的運作方式，使用數位模擬解決簡單問題，依設計構想完成組裝，並與他人合作、用資料說明策略。</div>
+<div class="card"><div class="no">03</div><h3>學習成果</h3>第一節學習單與預測單、數位學習單、組裝紀錄、實驗記錄與反思學習單、自評互評表。</div>
+</div></section>
+
+<section id="flow"><div class="kick">教學流程</div><h2>從觀察、預測、驗證到反思</h2>
+<p class="lead">每節 40 分鐘，前一節的產出都會成為下一節的依據。</p>
+<div class="steps" id="steps"></div></section>
+
+<section id="sim"><div class="kick">虛擬實驗室</div><h2>投石機小實驗室</h2>
+<p class="lead">第二節使用。學生選擇短、中、長臂，先猜落點再發射，系統會自動記錄並整理平均落點，可下載 PDF 學習單。</p>
+<div class="sim"><a class="btn p" href="https://claude.ai/artifact/FadoQbudE4qK4kSRcbB6zn" target="_blank" rel="noopener">開啟小實驗室 ↗</a><span class="tag">先預測再發射</span><span class="tag">三種變因</span><span class="tag">每次結果略有差異</span></div></section>
+
+<section id="units"><div class="kick">單元設計</div><h2>五節課的任務、產出與評量證據</h2>
+<div class="tw"><table><tr><th>活動</th><th>節數</th><th>主要任務</th><th>學習產出</th></tr>
+<tr><td>一／認識投石機</td><td>1 節</td><td>比較三台不同臂長的投石機，動手轉動投射臂，選擇假設並提出預測。</td><td>第一節學習單、預測單</td></tr>
+<tr><td>二／模擬實驗室</td><td>1 節</td><td>改變臂長，先預測再發射，辨識三種變因並記錄結果。</td><td>數位學習單（PDF）</td></tr>
+<tr><td>三／小小工程師</td><td>1 節</td><td>教師說明與示範後，分組組裝並試射投石機。</td><td>組裝紀錄</td></tr>
+<tr><td>四／實測驗證與投準挑戰</td><td>1 節</td><td>驗證模擬結果，擬定策略，五組輪流限時挑戰。</td><td>實驗記錄與反思學習單</td></tr>
+<tr><td>五／從數據到反思</td><td>1 節</td><td>依學習單說出問題、解決方法與特別發現，小組分享與自評互評。</td><td>口頭報告、自評互評表</td></tr></table></div>
+<div class="info"><div><b>核心素養</b>A2 系統思考與解決問題、A3 規劃執行與創新應變、B1 符號運用與溝通表達、C2 人際關係與團隊合作</div><div><b>教學設備</b>雷射切割投石機（短、中、長三種投射臂）、投射物、目標物、數位模擬網站、紙本學習單、試算表</div><div><b>評量取向</b>口頭問答、學習單、教師觀察、實測紀錄、挑戰紀錄、自評互評</div></div></section>
+
+<section id="lesson"><div class="kick">教案內容</div><h2>依課堂順序觀摩每個教學活動</h2>
+<p class="lead">點開每一節，可以看到學習目標、對應課綱、分鐘配置與評量。</p><div id="lessons"></div></section>
+
+<section id="kit"><div class="kick">教具融入</div><h2>先看懂臂長，再動手驗證</h2>
+<div class="look">
+<div class="card"><div class="big">👀 看</div><b>比較放球處</b><br>三台並排，比較放球處離轉軸有多遠，畫出擺動路徑。</div>
+<div class="card"><div class="big">💬 說</div><b>說明預測的理由</b><br>從三種假設中選一個，寫下為什麼這樣預測。</div>
+<div class="card"><div class="big">🛠 做</div><b>用資料驗證</b><br>每種臂長記錄多次落點，與模擬結果比較。</div></div>
+<div class="card" style="margin-top:12px"><h3>材料與安全</h3><ul class="l"><li>雷射切割投石機、投射物（各組相同）、目標物與學習單。</li><li>第一節只轉動投射臂，不放球、不發射。</li><li>固定發射方向，目標區前方不站人。</li><li>小零件集中放在材料盤，剪刀等工具由教師控管。</li></ul></div></section>
+
+<section id="assess"><div class="kick">評量規準</div><h2>用不同證據看見學生的歷程</h2>
+<div class="rub">
+<div class="card"><h3>概念</h3>能說明投石機各部位的功能，並用臂長概念解釋預測。<br><span class="tag">口頭問答</span><span class="tag">第一節學習單</span></div>
+<div class="card"><h3>模擬</h3>能操作模擬器，記錄不同臂長的結果，指出三種變因。<br><span class="tag">模擬紀錄表</span></div>
+<div class="card"><h3>組裝</h3>能依組裝圖完成投石機，安全使用工具並記錄問題。<br><span class="tag">教師巡視</span><span class="tag">零件檢核</span></div>
+<div class="card"><h3>資料</h3>能記錄多次落點，比較模擬與實測，依資料擬定策略。<br><span class="tag">實驗記錄</span><span class="tag">挑戰紀錄</span></div>
+<div class="card"><h3>合作與反思</h3>能說出問題、解決方法與發現，並回應同學提問。<br><span class="tag">口頭報告</span><span class="tag">自評互評表</span></div></div></section>
+
+<section id="ws"><div class="kick">學習單</div><h2>第四節　實驗記錄與反思學習單</h2>
+<p class="lead">組別：＿＿＿　記錄者：＿＿＿　操作投石機：＿＿＿、＿＿＿　撿球：＿＿＿、＿＿＿</p>
+<h3>一、實測驗證：短、中、長臂各投 3 次（單位：公分）</h3>
+<div class="tw ws"><table><tr><th>手臂</th><th>模擬結果</th><th>第 1 次</th><th>第 2 次</th><th>第 3 次</th><th>平均</th></tr><tr><td>短臂</td><td class="e"></td><td></td><td></td><td></td><td></td></tr><tr><td>中臂</td><td class="e"></td><td></td><td></td><td></td><td></td></tr><tr><td>長臂</td><td class="e"></td><td></td><td></td><td></td><td></td></tr></table></div>
+<h3>二、投準挑戰：球擊中目標物，就在格子裡打勾</h3>
+<div class="tw ws"><table><tr><th>排別</th><th>目標 1</th><th>目標 2</th><th>目標 3</th><th>目標 4</th><th>目標 5</th><th>命中數</th></tr><tr><td>前排</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>中排</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>後排</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>合計</td><td class="e"></td><td></td><td></td><td></td><td></td><td></td></tr></table></div>
+<h3>三、我的反思</h3>
+<div class="tw ws"><table><tr><td style="width:34%"><b>我們的策略（打哪一排、用哪種臂長）</b></td><td class="e"></td></tr><tr><td>遇到的問題</td><td class="e"></td></tr><tr><td>我們怎麼解決</td><td class="e"></td></tr><tr><td>特別的發現</td><td class="e"></td></tr><tr><td>模擬和實測一樣嗎？為什麼？</td><td class="e"></td></tr></table></div>
+<p class="noprint"><button class="p" id="pr2">列印這份學習單</button></p></section>
+<footer>第五組　國小科技教育教案　教學設計：林宥潁、陳芊蕙、張鈞翔、黃楷媜。本頁為初稿，內容以教案文件為準。</footer>
+</div>
+<script>
+var COLORS=["#e0a93b","#4a90d9","#4caf50","#e0645c","#8b5cc7"];
+var L=[
+{t:"認識投石機",d:"比較三台不同臂長的投石機，動手轉動投射臂，選擇假設並提出預測。",tags:["三台並排","動手轉動","預測"],
+ perf:"生議 k-III-1 能了解生活常見科技產品的用途與運作方式。",cont:"生議 A-III-2 日常科技產品的基本運作原理；自 INb-Ⅲ-4 力可藉由簡單機械傳遞。",
+ goal:["辨識投石機的主要構造與功能。","透過比較並動手轉動不同臂長的投射臂，理解臂長與放球處移動距離的關係。"],
+ s:[[5,"認識投石機","教師展示投石機，學生指出投射臂、轉軸、橡皮筋與放球處，並思考「球為什麼會飛出去？」"],[8,"三台並排觀察","短、中、長臂三台投石機事先備妥並排擺放，學生比較放球處離轉軸的遠近，在學習單標出位置，並畫出手動擺動時放球處的路徑。"],[12,"輪流動手","各組代表輪流上前，在教師看顧下，用手輕輕轉動三種長度的投射臂（不放球、不發射），感受哪一台比較好轉、放球處走得多遠。"],[15,"連結概念與提出預測","全班比較三台，歸納臂越長放球處走得越遠，但同樣的力轉動長臂可能較吃力，兩個效果互相拉扯（8 分鐘）。學生從三種假設（臂越長球越遠、臂越短球越近、落點不一定有規律）中選一個，寫下預測與理由，並統計全班選擇（7 分鐘）。"]],
+ a:"口頭問答、第一節學習單、預測單"},
+{t:"模擬實驗室",d:"使用數位模擬器改變臂長，先預測落點再觀察結果，學習三種變因並保留數位學習單。",tags:["數位模擬","變因","學習單"],
+ perf:"資議 t-III-2 能使用資訊科技解決生活中簡單的問題。",cont:"資議 T-III-5 數位學習網站與資源的使用；資議 D-III-3 系統化數位資料管理方法。",
+ goal:["使用數位模擬器，觀察不同臂長對落點的影響並寫下預測。","辨識操縱變因、控制變因與應變變因，並記錄模擬結果。"],
+ s:[[8,"認識模擬器與變因","教師示範模擬器的操作，說明操縱變因（臂長）、控制變因（橡皮筋、投射物、出手角度）與應變變因（落點）。"],[17,"先猜再發射","學生選擇短、中、長臂，先標出預測落點，再發射並觀察結果，每次結果自動記錄在表格中。"],[10,"比較與討論","小組比較三種臂長的結果，檢查預測與結果是否一致，並討論出手角度固定時臂長如何影響落點。"],[5,"保存學習單","學生寫下發現，將學習單下載成 PDF，保留到第四節使用。"]],
+ a:"口頭問答、模擬紀錄表、數位學習單"},
+{t:"小小工程師",d:"教師說明並示範後，學生分組組裝並試射投石機。",tags:["組裝","工具安全","試射"],
+ perf:"生議 c-III-1 能依據設計構想以規劃物品的製作步驟；生議 s-III-2 能操作家庭常見的手工具。",cont:"生議 P-III-2 日常手工具的使用；生議 A-III-1 日常科技產品的使用。",
+ goal:["依據設計圖完成投石機組裝，正確使用工具與材料並測試功能。","能規劃製作步驟，與組員合作完成投石機組裝並進行試射。"],
+ s:[[10,"製作任務說明","教師說明雷切零件、組裝順序與安全規範，並示範關鍵步驟。學生依組裝圖清點零件，辨識卡榫、連接處與支撐構件。"],[25,"小組組裝","組員分工完成投石機組裝，並記錄遇到的組裝問題，檢查零件是否穩固、有無鬆脫。完成後在指定方向試射一次，確認能正常發射。"],[5,"收拾整理","整理工具與材料，完成組裝紀錄。"]],
+ a:"口頭問答、零件檢核、教師巡視、小組紀錄"},
+{t:"實測驗證與投準挑戰",d:"各組以實體投石機驗證第二節的模擬結果，記錄不同臂長的落點，再運用資料進行限時投準挑戰。",tags:["實測驗證","擬定策略","輪流挑戰"],
+ perf:"生議 k-III-1；生議 c-III-3 能具備與他人團隊合作的能力。",cont:"生議 A-III-1、A-III-2；自 INc-Ⅲ-4 對相同事物做多次測量，其結果間可能有差異。",
+ goal:["以實體投石機驗證模擬結果，記錄短、中、長臂的落點。","與小組成員合作，運用實測資料選擇臂長，在限時挑戰中擊中較多目標物。"],
+ s:[[2,"回顧與任務說明","各組回顧第二節的預測，教師說明挑戰規則（前、中、後三排各五個目標物，每組限時 5 分鐘，擊中最多目標物者獲勝）與安全注意事項。"],[8,"實測驗證","各組以相同的橡皮筋與投射物，分別使用短、中、長臂試射，記錄落點，並與模擬結果比較。"],[28,"擬定策略與投準挑戰","各組先在學習單寫下策略（打哪一排、用哪種臂長，3 分鐘）。五組輪流上場，每組限時 5 分鐘（25 分鐘）。組內分工：1 人記錄數據，2 人操作投石機，2 人撿球。"],[2,"整理與收尾","記錄本組命中的目標，確認紀錄完整，保留至第五節反思。"]],
+ a:"口頭問答、實驗紀錄表、挑戰紀錄表、教師觀察"},
+{t:"從數據到反思",d:"學生依紙本學習單的紀錄，說出遇到的問題、解決方法與特別發現，並進行小組分享與自評互評。",tags:["問題與解決","分享","自評互評"],
+ perf:"生議 a-III-2 能體會動手實作的樂趣，並養成正向的科技態度；生議 c-III-3。",cont:"生議 A-III-2 日常科技產品的基本運作原理。",
+ goal:["依學習單的紀錄，說出遇到的問題、解決方法與特別發現。","根據實測資料，說明小組選擇的臂長與策略，並回應同學的提問。"],
+ s:[[5,"回顧整理","小組翻閱學習單，回看第二節的預測、第四節的實測與挑戰結果。"],[10,"小組討論","小組依學習單整理三件事：遇到什麼問題、如何解決、有什麼特別發現。"],[15,"小組分享","各組輪流分享，同學與老師提問，其他組別以自評、互評表給予回饋。"],[10,"全班歸納與自評","教師串連各組發現，回扣臂長、力臂與控制變因；學生完成個人自評。"]],
+ a:"學習單、口頭報告、小組討論、自評互評表"}];
+function E(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+document.getElementById("steps").innerHTML=L.map(function(x,i){return'<div class="step" style="--c:'+COLORS[i]+'"><div class="n">第 '+(i+1)+' 節　40 分鐘</div><h3>'+E(x.t)+'</h3><div>'+E(x.d)+'</div>'+x.tags.map(function(t){return'<span class="tag">'+E(t)+'</span>'}).join("")+'</div>'}).join("");
+document.getElementById("lessons").innerHTML=L.map(function(x,i){return'<details style="--c:'+COLORS[i]+'"'+(i==0?" open":"")+'><summary><span class="dot"></span>第 '+(i+1)+' 節　'+E(x.t)+'<small>40 分鐘</small></summary><div class="body"><h4>學習目標</h4><ol class="s">'+x.goal.map(function(g){return'<li>'+E(g)+'</li>'}).join("")+'</ol><h4>對應課綱</h4><p><b>學習表現：</b>'+E(x.perf)+'<br><b>學習內容：</b>'+E(x.cont)+'</p><h4>活動步驟</h4><ol class="s">'+x.s.map(function(s){return'<li><span class="min">'+s[0]+' 分鐘</span>　<b>'+E(s[1])+'</b>：'+E(s[2])+'</li>'}).join("")+'</ol><h4>評量方式</h4><p>'+E(x.a)+'</p></div></details>'}).join("");
+function pr(){var d=document.querySelectorAll("details"),st=[];d.forEach(function(e){st.push(e.open);e.open=true});window.print();d.forEach(function(e,i){e.open=st[i]})}
+document.getElementById("pr").onclick=pr;document.getElementById("pr2").onclick=function(){window.print()};
+</script>
+</body>
+</html>
