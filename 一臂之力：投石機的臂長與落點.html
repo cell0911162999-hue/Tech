@@ -109,14 +109,14 @@ footer{padding:26px 0 44px;color:var(--mute);font-size:.9rem;border-top:1px soli
 <tr><td>三／小小工程師</td><td>1 節</td><td>教師說明與示範後，分組組裝並試射投石機。</td><td>組裝紀錄</td></tr>
 <tr><td>四／實測驗證與投準挑戰</td><td>1 節</td><td>驗證模擬結果，擬定策略，五組輪流限時挑戰。</td><td>實驗記錄與反思學習單</td></tr>
 <tr><td>五／從數據到反思</td><td>1 節</td><td>依學習單說出問題、解決方法與特別發現，小組分享與自評互評。</td><td>口頭報告、自評互評表</td></tr></table></div>
-<div class="info"><div><b>核心素養</b>A2 系統思考與解決問題、A3 規劃執行與創新應變、B1 符號運用與溝通表達、C2 人際關係與團隊合作</div><div><b>教學設備</b>雷射切割投石機（短、中、長三種投射臂）、投射物、目標物、數位模擬網站、紙本學習單、試算表</div><div><b>評量取向</b>口頭問答、學習單、教師觀察、實測紀錄、挑戰紀錄、自評互評</div></div></section>
+<div class="info"><div><b>核心素養</b>A2 系統思考與解決問題、A3 規劃執行與創新應變、B1 符號運用與溝通表達、C2 人際關係與團隊合作</div><div><b>教學設備</b>雷射切割投石機（短臂 15 公分、中臂 20 公分、長臂 25 公分）、投射物、目標物、數位模擬網站、紙本學習單、試算表</div><div><b>評量取向</b>口頭問答、學習單、教師觀察、實測紀錄、挑戰紀錄、自評互評</div></div></section>
 
 <section id="lesson"><div class="kick">教案內容</div><h2>依課堂順序觀摩每個教學活動</h2>
 <p class="lead">點開每一節，可以看到學習目標、對應課綱、分鐘配置與評量。</p><div id="lessons"></div></section>
 
 <section id="kit"><div class="kick">教具融入</div><h2>先看懂臂長，再動手驗證</h2>
 <div class="look">
-<div class="card"><div class="big">👀 看</div><b>比較放球處</b><br>三台並排，比較放球處離轉軸有多遠，畫出擺動路徑。</div>
+<div class="card"><div class="big">👀 看</div><b>比較放球處</b><br>三台並排（短臂 15、中臂 20、長臂 25 公分，從轉軸量到圓圈），比較放球處離轉軸有多遠，畫出擺動路徑。</div>
 <div class="card"><div class="big">💬 說</div><b>說明預測的理由</b><br>從三種假設中選一個，寫下為什麼這樣預測。</div>
 <div class="card"><div class="big">🛠 做</div><b>用資料驗證</b><br>每種臂長記錄多次落點，與模擬結果比較。</div></div>
 <div class="card" style="margin-top:12px"><h3>材料與安全</h3><ul class="l"><li>雷射切割投石機、投射物（各組相同）、目標物與學習單。</li><li>第一節只轉動投射臂，不放球、不發射。</li><li>固定發射方向，目標區前方不站人。</li><li>小零件集中放在材料盤，剪刀等工具由教師控管。</li></ul></div></section>
@@ -141,6 +141,7 @@ footer{padding:26px 0 44px;color:var(--mute);font-size:.9rem;border-top:1px soli
 <footer>第五組　國小科技教育教案　教學設計：林宥潁、陳芊蕙、張鈞翔、黃楷媜。本頁為初稿，內容以教案文件為準。</footer>
 </div>
 <div id="toast" class="noprint" role="status" style="display:none;position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--card);padding:10px 18px;border-radius:999px;z-index:30;max-width:90vw;font-size:.95rem"></div>
+<div id="ov" class="noprint" style="display:none;position:fixed;inset:0;z-index:50;background:var(--bg);align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:var(--acc);text-align:center;padding:20px">📄 文件製作中，請稍等…</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
@@ -179,7 +180,7 @@ var ST='font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif
 function toast(m,keep){var t=document.getElementById("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);if(!keep)toast.h=setTimeout(function(){t.style.display="none"},7000)}
 function TB(h,rows){return'<table style="width:100%;border-collapse:collapse;font-size:15px"><tr>'+h.map(function(x){return'<th style="border:1px solid #888;padding:6px 8px;background:#f7e0c6;text-align:left">'+x+'</th>'}).join("")+'</tr>'+rows.map(function(r){return'<tr>'+r.map(function(x){return'<td style="border:1px solid #888;padding:6px 8px;vertical-align:top">'+x+'</td>'}).join("")+'</tr>'}).join("")+'</table>'}
 function sheetBlocks(){var b=[];
- b.push('<div style="font-size:28px;font-weight:700;color:#a8480f">一臂之力：投石機的臂長與落點</div><div style="font-size:16px;margin:4px 0 10px">國小科技教育教案　說課單　第五組</div><div style="background:#f7e0c6;border-left:6px solid #a8480f;padding:10px 14px;font-weight:700;font-size:17px;margin:8px 0">核心問題：相同的橡皮筋與投射物，只改變投射臂的長度，球會落在哪裡？</div><div style="font-size:15px"><b>實施年級：</b>國小六年級　<b>節數：</b>5 節，共 200 分鐘　<b>跨領域：</b>科技、資訊、自然<br><b>核心素養：</b>A2 系統思考與解決問題、A3 規劃執行與創新應變、B1 符號運用與溝通表達、C2 人際關係與團隊合作<br><b>教學設備：</b>雷射切割投石機（短、中、長三種投射臂）、投射物、目標物、數位模擬網站、紙本學習單、試算表</div>');
+ b.push('<div style="font-size:28px;font-weight:700;color:#a8480f">一臂之力：投石機的臂長與落點</div><div style="font-size:16px;margin:4px 0 10px">國小科技教育教案　說課單　第五組</div><div style="background:#f7e0c6;border-left:6px solid #a8480f;padding:10px 14px;font-weight:700;font-size:17px;margin:8px 0">核心問題：相同的橡皮筋與投射物，只改變投射臂的長度，球會落在哪裡？</div><div style="font-size:15px"><b>實施年級：</b>國小六年級　<b>節數：</b>5 節，共 200 分鐘　<b>跨領域：</b>科技、資訊、自然<br><b>核心素養：</b>A2 系統思考與解決問題、A3 規劃執行與創新應變、B1 符號運用與溝通表達、C2 人際關係與團隊合作<br><b>教學設備：</b>雷射切割投石機（短臂 15 公分、中臂 20 公分、長臂 25 公分）、投射物、目標物、數位模擬網站、紙本學習單、試算表</div>');
  b.push('<div style="font-size:20px;font-weight:700;color:#a8480f;margin-bottom:6px">單元設計</div>'+TB(["活動","主要任務","學習產出"],L.map(function(x,i){return['第 '+(i+1)+' 節　'+E(x.t),E(x.d),E(x.a)]})));
  L.forEach(function(x,i){b.push('<div style="border-top:8px solid '+COLORS[i]+';padding-top:8px"><div style="font-size:21px;font-weight:700">第 '+(i+1)+' 節　'+E(x.t)+'（40 分鐘）</div><div style="font-size:15px;margin:6px 0"><b>學習目標：</b><br>'+x.goal.map(function(g,j){return(j+1)+'. '+E(g)}).join("<br>")+'<br><b>學習表現：</b>'+E(x.perf)+'<br><b>學習內容：</b>'+E(x.cont)+'</div>'+TB(["時間","活動","內容"],x.s.map(function(s){return[s[0]+' 分鐘','<b>'+E(s[1])+'</b>',E(s[2])]}))+'<div style="font-size:15px;margin-top:6px"><b>評量方式：</b>'+E(x.a)+'</div></div>')});
  b.push('<div style="font-size:20px;font-weight:700;color:#a8480f;margin-bottom:6px">評量規準</div>'+TB(["面向","評量重點","評量工具"],[["概念","能說明投石機各部位的功能，並用臂長概念解釋預測。","口頭問答、第一節學習單"],["模擬","能操作模擬器，記錄不同臂長的結果，指出三種變因。","模擬紀錄表"],["組裝","能依組裝圖完成投石機，安全使用工具並記錄問題。","教師巡視、零件檢核"],["資料","能記錄多次落點，比較模擬與實測，依資料擬定策略。","實驗記錄、挑戰紀錄"],["合作與反思","能說出問題、解決方法與發現，並回應同學提問。","口頭報告、自評互評表"]]));
@@ -187,18 +188,20 @@ function sheetBlocks(){var b=[];
 function wsBlock(){var c=document.getElementById("ws").cloneNode(true);c.querySelectorAll(".noprint").forEach(function(n){n.remove()});
  return['<style>table{width:100%;border-collapse:collapse;font-size:15px}th,td{border:1px solid #888;padding:8px;text-align:left}th{background:#f7e0c6}td.e{height:34px}h2{font-size:24px;color:#a8480f;margin:0 0 6px}h3{font-size:17px;margin:14px 0 6px}p{margin:4px 0;font-size:15px}.kick{display:none}</style>'+c.innerHTML]}
 async function buildPDF(htmls,name){
- toast("文件製作中，請稍等…",true);var pdf=new jspdf.jsPDF({unit:"mm",format:"a4"}),y=10,first=true;
+ toast("文件製作中，請稍等…",true);document.getElementById("ov").style.display="flex";var pdf=new jspdf.jsPDF({unit:"mm",format:"a4"}),y=10,first=true;
  try{
   for(var i=0;i<htmls.length;i++){var el=document.createElement("div");el.style.cssText="position:fixed;left:0;top:0;z-index:-1;width:760px;padding:10px 14px;"+ST;el.innerHTML=htmls[i];document.body.appendChild(el);
    var c=await html2canvas(el,{scale:2,backgroundColor:"#ffffff"});document.body.removeChild(el);
    var w=190,h=c.height*w/c.width;if(h>277){w=w*277/h;h=277}
    if(!first&&y+h>287){pdf.addPage();y=10}
    pdf.addImage(c.toDataURL("image/jpeg",0.92),"JPEG",10,y,w,h);y+=h+4;first=false}
-  var blob=pdf.output("blob"),dl=(window.claude&&claude.use)?await claude.use("downloads"):null;
-  if(!dl){toast("這裡不能直接下載，請改用瀏覽器開啟這個網頁再試一次。");return}
+  document.getElementById("ov").style.display="none";var blob=pdf.output("blob"),dl=(window.claude&&claude.use)?await claude.use("downloads"):null;
+  if(!dl){if(!(window.claude&&claude.use)){anchorSave(blob,name);toast("✅ 已下載「"+name+"」，請到「下載」資料夾找這個檔案。");return}toast("這個環境無法直接下載。請改用已登入 Claude 的瀏覽器開啟，或向老師索取檔案。");return}
   try{await dl.save({filename:name,data:blob});toast("✅ 已下載「"+name+"」，請到「下載」資料夾找這個檔案。")}
   catch(e){toast((e&&e.code=="declined")?"你選擇不下載。需要的話再按一次按鈕。":"下載沒有成功，請再試一次。")}
- }catch(e){toast("文件沒有做成功，請再試一次。")}}
+ }catch(e){document.getElementById("ov").style.display="none";toast("文件沒有做成功，請再試一次。")}}
+function anchorSave(blob,name){var u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
 document.getElementById("pr").onclick=function(){buildPDF(sheetBlocks(),"一臂之力說課單.pdf")};
 document.getElementById("pr2").onclick=function(){buildPDF(wsBlock(),"一臂之力第四節學習單.pdf")};
 </script>
