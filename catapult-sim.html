@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>投石機小實驗室</title>
+<style>
+:root{--bg:#f8f6f1;--card:#fdfbf7;--ink:#1d2b3a;--mute:#5a6b7a;--line:#ddd9cf;--acc:#1f6f8b;--acc2:#e6f2f7;--warn:#5a3d24;--sky:#f7efe0;--gnd:#c9a878;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a22;--card:#16242e;--ink:#e6eef3;--mute:#9db0bd;--line:#2a3b47;--acc:#6cc0dc;--acc2:#1b3340;--warn:#e8d3b0;--sky:#2e2418;--gnd:#4f3d27;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1a22;--card:#16242e;--ink:#e6eef3;--mute:#9db0bd;--line:#2a3b47;--acc:#6cc0dc;--acc2:#1b3340;--warn:#e8d3b0;--sky:#2e2418;--gnd:#4f3d27;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.75 "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+.w{max-width:960px;margin:auto;padding:16px}
+h1{margin:0;font-size:1.5rem;color:var(--acc)}
+.back{display:inline-block;border:2px solid var(--acc);background:var(--acc2);color:var(--acc);padding:8px 16px;border-radius:14px;text-decoration:none;font-weight:700}
+.sub{color:var(--mute);font-size:.9rem;margin:2px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+h2{font-size:1.05rem;margin:0 0 6px;color:var(--acc)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.v{border:1px solid var(--line);border-radius:10px;padding:8px;font-size:.88rem;background:var(--bg)}
+.v b{display:block;color:var(--acc)}
+.ctl{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-size:.88rem;color:var(--mute);display:block;margin-bottom:4px}
+.seg{display:flex;gap:6px}
+.seg button{flex:1}
+button{font:inherit;cursor:pointer;border:1px solid var(--acc);background:var(--acc2);color:var(--acc);padding:7px 10px;border-radius:8px}
+button.on,button.p{background:var(--acc);color:var(--card)}
+button:disabled{opacity:.45;cursor:not-allowed}
+input[type=range]{width:100%}
+input[type=text],textarea{font:inherit;width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+canvas{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line);touch-action:none}
+.hint{font-size:.88rem;color:var(--mute);margin:6px 0}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.res{font-size:1.05rem;margin:6px 0}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:5px 8px;text-align:center}
+th{background:var(--acc2)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+@media (max-width:640px){.ctl,.row2{grid-template-columns:1fr}.g3{grid-template-columns:1fr}}
+@media print{body{background:#fff;color:#000}.noprint{display:none!important}.card{border-color:#999}}
+.v:nth-child(1){background:#e6f2f7;border-color:#9cc7d9}.v:nth-child(2){background:#e9edf8;border-color:#a7b6dc}.v:nth-child(3){background:#e4f3f0;border-color:#9acfc6}
+.v{color:#222;font-size:.95rem}.v b{color:#222}
+button{font-size:1rem;padding:10px 16px;border-radius:12px}
+.res{font-size:1.15rem;font-weight:600}
+h2{font-size:1.2rem}
+</style>
+</head>
+<body>
+<div class="w">
+<p class="noprint" style="margin:0 0 10px"><a class="back" href="index.html">← 回到教案網站</a></p>
+<h1>🎯 投石機小實驗室</h1>
+<p class="sub">換不同長度的手臂，猜猜球會飛到哪裡？先猜，再發射，看看你猜得準不準！</p>
+
+<div class="card"><h2>🔍 做實驗要記得三件事</h2>
+<div class="g3">
+<div class="v"><b>🔧 操縱變因</b>我們「故意改變」的東西：手臂的長短。</div>
+<div class="v"><b>🔒 控制變因</b>要「保持一樣」的東西：橡皮筋、球、出手角度。</div>
+<div class="v"><b>👀 應變變因</b>我們要「觀察」的結果：球飛了多遠。</div>
+</div></div>
+
+<div class="card noprint"><h2>第 1 步　選一支手臂</h2>
+<div><label>投石機的手臂可以換成短、中、長（長度是從轉軸量到圓圈的距離）</label><div class="seg" id="arm"></div></div>
+<p class="hint">出手的角度是固定的，所以這次只換手臂，其他都不變喔！</p></div>
+
+<div class="card"><h2>第 2 步　猜一猜，再發射</h2>
+<p class="hint noprint" id="tip">先在下面的地面上點一下，標出你猜球會落在哪裡，再按「發射」！</p>
+<p class="hint">小提醒：每次發射的結果會有一點點不一樣，真實的投石機也是這樣。所以同一支手臂要多投幾次，再來比較！</p>
+<canvas id="cv" width="900" height="420"></canvas>
+<div class="res" id="res">尚未發射</div>
+<div class="bar noprint"><button class="p" id="go" disabled>🚀 發射！</button><button id="clr">重新猜</button></div></div>
+
+<div class="card"><h2>第 3 步　我的實驗紀錄</h2>
+<p class="hint">每發射一次，下面的表格就會自動多一行，你不用自己寫。</p>
+<p class="hint">⚠️ 重新整理頁面，紀錄就會不見。做完實驗，請先按「下載 PDF 學習單」存起來！</p>
+<div class="row2"><div><label>姓名／組別</label><input type="text" id="nm"></div><div></div></div>
+<div class="tw"><table><thead><tr><th>第幾次</th><th>用哪支手臂</th><th>我猜球會落在（公分）</th><th>球真的落在（公分）</th><th>我猜得…</th></tr></thead><tbody id="tb"></tbody></table></div>
+<label style="margin-top:10px">我發現了什麼？（手臂變長或變短，球飛的距離有什麼不一樣？）</label>
+<textarea id="note" rows="3" placeholder="例如：我發現手臂越長，球飛得越……"></textarea>
+<div class="bar noprint"><button class="p" id="pdf">📄 下載 PDF 學習單</button><button id="prt" style="display:none">🖨️ 列印</button><button id="cp">複製紀錄</button><button id="rs">清空紀錄</button></div>
+<div id="pdfmsg" class="hint noprint" style="font-weight:600"></div><div id="pdfprev" class="noprint"></div></div>
+
+<div class="card"><h2>整理：三種手臂的平均落點</h2><div class="tw"><table><thead><tr><th>手臂</th><th>投了幾次</th><th>球落在（公分）</th><th>平均（公分）</th></tr></thead><tbody id="sm"></tbody></table></div><p class="hint">這裡的平均可以抄到第四節的「模擬結果」欄。</p></div>
+
+<div class="card noprint" id="tpanel" style="display:none;font-size:.85rem;color:var(--mute)"><b>老師設定（學生請勿更改）：</b>這是簡化的教學模型。請用實體投石機試射後，調整基準初速與出手角度，讓模擬接近實際落點。
+<div style="margin-top:6px"><label>基準初速（中臂）：<span id="bV">3.0</span> m/s</label><input type="range" id="base" min="1.5" max="5" value="3" step="0.1"></div><div style="margin-top:6px"><label>固定出手角度：<span id="aV">45</span>°</label><input type="range" id="ang" min="20" max="70" value="45" step="5"></div>
+</div>
+<div id="ov" class="noprint" style="display:none;position:fixed;inset:0;z-index:50;background:var(--bg);align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:var(--acc);text-align:center;padding:20px">📄 學習單製作中，請稍等…</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+var ARMS=[["短臂",15],["中臂",20],["長臂",25]],G=9.8,MAXCM=200;
+var arm=1,pred=null,lastPred=null,rows=[],base=3,landed=null,curve=[],PHI0=-85;
+function $(i){return document.getElementById(i)}
+var cv=$("cv"),cx=cv.getContext("2d"),W=cv.width,H=cv.height,X0=120,GY=H-60,SC=(W-X0-30)/MAXCM,PY=GY-40;
+function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function speed(L){return base*Math.pow(L/20,0.6)}
+function th(){return +$("ang").value}
+function phiR(){return -(90-th())}
+function armPx(){return ARMS[arm][1]*4}
+function tip(phi){var r=phi*Math.PI/180,l=armPx();return{x:X0+l*Math.sin(r),y:PY-l*Math.cos(r)}}
+function flight(){var t=tip(phiR()),h=(GY-t.y)/SC/100,v=speed(ARMS[arm][1])*(1+(Math.random()-0.5)*0.08),a=th()*Math.PI/180,vy=v*Math.sin(a);
+ var T=(vy+Math.sqrt(vy*vy+2*G*h))/G;return{t:t,v:v,a:a,T:T,R:(t.x-X0)/SC+v*Math.cos(a)*T*100}}
+function line(x1,y1,x2,y2,c,w){cx.strokeStyle=c;cx.lineWidth=w;cx.lineCap="round";cx.beginPath();cx.moveTo(x1,y1);cx.lineTo(x2,y2);cx.stroke()}
+function cord(pts){cx.lineCap="round";cx.lineJoin="round";[[4,"#b9a98a"],[2,"#fffefb"]].forEach(function(o){cx.lineWidth=o[0];cx.strokeStyle=o[1];cx.beginPath();cx.moveTo(pts[0][0],pts[0][1]);for(var i=1;i<pts.length;i++)cx.lineTo(pts[i][0],pts[i][1]);cx.stroke()})}
+function bead(x,y){cx.fillStyle="#fffefb";cx.strokeStyle="#b9a98a";cx.lineWidth=1.5;cx.beginPath();cx.arc(x,y,2.5,0,7);cx.fill();cx.stroke()}
+function drawCat(phi,ball){
+ var W="#e3c48d",E="#6b4a25",S=css("--sky"),P=Math.PI,R=P/180;
+ cx.save();cx.translate(2*X0,0);cx.scale(-1,1);
+ cx.fillStyle="rgba(0,0,0,.12)";cx.beginPath();cx.ellipse(X0+20,GY+3,92,6,0,0,P*2);cx.fill();
+ cx.lineWidth=2;cx.strokeStyle=E;cx.fillStyle=W;
+ cx.fillRect(X0-4,GY-12,100,12);cx.strokeRect(X0-4,GY-12,100,12);
+ cx.fillRect(X0+82,GY-24,14,24);cx.strokeRect(X0+82,GY-24,14,24);
+ cx.fillStyle=E;cx.fillRect(X0+86,GY-18,4,10);for(var i=0;i<8;i++)cx.fillRect(X0+6+i*11,GY-3,6,3);
+ cx.fillStyle=W;cx.beginPath();cx.moveTo(X0-58,GY);cx.lineTo(X0-58,GY-20);cx.lineTo(X0-26,GY-72);cx.lineTo(X0+4,GY-72);cx.lineTo(X0+4,GY);cx.closePath();cx.fill();cx.stroke();
+ line(X0-38,GY-14,X0-22,GY-46,E,13);line(X0-38,GY-14,X0-22,GY-46,S,9);
+ cx.fillStyle=E;cx.fillRect(X0-20,GY-68,20,4);cx.fillRect(X0-4,GY-58,4,13);cx.fillRect(X0-4,GY-22,4,13);
+ cord([[X0-52,GY-6],[X0-40,GY-12],[X0-26,GY-34],[X0-8,GY-44],[X0+2,PY+6]]);
+ cx.fillStyle=W;cx.strokeStyle=E;cx.lineWidth=2;cx.beginPath();cx.arc(X0,PY,11,0,P*2);cx.fill();cx.stroke();cx.fillStyle=E;cx.fillRect(X0-3,PY-3,6,6);
+ cord([[X0+92,GY-20],[X0+102,GY-28],[X0+110,GY-30]]);bead(X0+110,GY-30);
+ cx.restore();
+ var t=tip(phi),l=armPx();
+ line(X0,PY,t.x,t.y,E,10);line(X0,PY,t.x,t.y,W,6);
+ [60,80].forEach(function(d){if(d<l-3){var px=X0+d*Math.sin(phi*R),py=PY-d*Math.cos(phi*R),nx=Math.cos(phi*R),ny=Math.sin(phi*R);line(px-nx*3,py-ny*3,px+nx*3,py+ny*3,S,3)}});
+ cx.fillStyle=W;cx.strokeStyle=E;cx.lineWidth=2;cx.beginPath();cx.arc(t.x,t.y,9,0,P*2);cx.fill();cx.stroke();
+ cx.fillStyle=S;cx.beginPath();cx.arc(t.x,t.y,5,0,P*2);cx.fill();cx.stroke();
+ if(ball){cx.fillStyle="#f2711c";cx.beginPath();cx.arc(t.x,t.y,4.2,0,P*2);cx.fill()}
+ cord([[t.x+5,t.y+3],[t.x+7,t.y+14],[t.x+6,t.y+24]]);bead(t.x+6,t.y+24);
+
+ cx.fillStyle=css("--ink");cx.font="bold 16px sans-serif";cx.textAlign="left";cx.fillText("投射臂",t.x+16,t.y-8);cx.textAlign="left";cx.fillText("木框架",X0+64,GY-30)}
+function ghosts(){var r=phiR()*Math.PI/180;cx.setLineDash([5,5]);cx.lineWidth=2;cx.font="bold 16px sans-serif";cx.textAlign="center";
+for(var i=0;i<3;i++){var l=ARMS[i][1]*4,x=X0+l*Math.sin(r),y=PY-l*Math.cos(r);cx.strokeStyle=css("--mute");cx.fillStyle=css("--mute");
+cx.beginPath();cx.moveTo(X0,PY);cx.lineTo(x,y);cx.stroke();cx.beginPath();cx.arc(x,y,14,0,7);cx.stroke();cx.fillText(ARMS[i][0],x,y-22)}cx.setLineDash([])}
+function mark(x,col,txt,up){cx.strokeStyle=col;cx.fillStyle=col;cx.lineWidth=3;cx.beginPath();cx.moveTo(x,GY-34);cx.lineTo(x,GY);cx.stroke();cx.lineWidth=1;cx.textAlign="center";cx.font="bold 17px sans-serif";cx.fillText(txt,x,GY-40-(up||0))}
+function draw(phi,bp){
+ cx.clearRect(0,0,W,H);cx.fillStyle=css("--sky");cx.fillRect(0,0,W,GY);cx.fillStyle=css("--gnd");cx.fillRect(0,GY,W,H-GY);
+ cx.strokeStyle=css("--mute");cx.fillStyle=css("--mute");cx.font="18px sans-serif";cx.textAlign="center";cx.lineWidth=1;
+ for(var d=0;d<=MAXCM;d+=20){var x=X0+d*SC;cx.beginPath();cx.moveTo(x,GY);cx.lineTo(x,GY+8);cx.stroke();cx.fillText(d,x,GY+28)}
+ cx.fillText("距離（公分）",W/2,H-8);
+ ghosts();drawCat(phi==null?PHI0:phi,!bp&&landed==null);
+ var pp=pred!=null?pred:lastPred;if(pp!=null)mark(X0+pp*SC,css("--warn"),"我猜 "+Math.round(pp));
+ if(curve.length){cx.strokeStyle=css("--acc");cx.lineWidth=2;cx.setLineDash([6,6]);cx.beginPath();curve.forEach(function(p,i){i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1])});cx.stroke();cx.setLineDash([])}
+ if(bp){cx.fillStyle=css("--ink");cx.beginPath();cx.arc(bp.x,bp.y,8,0,7);cx.fill()}
+ if(landed!=null)mark(X0+landed*SC,css("--acc"),"實際 "+Math.round(landed),(pp!=null&&Math.abs(landed-pp)<15)?28:0)}
+function setArms(){$("arm").innerHTML=ARMS.map(function(a,i){return"<button data-i='"+i+"' class='"+(i==arm?"on":"")+"'>"+a[0]+"<br><small>"+a[1]+" 公分</small></button>"}).join("")}
+$("arm").onclick=function(e){var i=e.target.dataset.i;if(i==null)return;arm=+i;setArms();resetShot();};
+$("ang").oninput=function(){$("aV").textContent=this.value;resetShot()};
+$("base").oninput=function(){base=+this.value;$("bV").textContent=base.toFixed(1);resetShot()};
+function resetShot(){landed=null;lastPred=null;curve=[];$("res").textContent="還沒發射喔";draw(PHI0)}
+function pick(e){var r=cv.getBoundingClientRect(),x=(e.clientX-r.left)*W/r.width,d=(x-X0)/SC;if(d<0||d>MAXCM)return;pred=d;lastPred=null;landed=null;curve=[];$("go").disabled=false;$("tip").textContent="猜好了！按「發射」看看結果。想改的話再點一次就好。";$("res").textContent="你猜的位置：約 "+Math.round(pred)+" 公分";draw(PHI0)}
+cv.addEventListener("pointerdown",pick);
+$("clr").onclick=function(){pred=null;lastPred=null;$("go").disabled=true;$("tip").textContent="先在下面的地面上點一下，標出你猜球會落在哪裡，再按「發射」！";resetShot()};
+$("go").onclick=function(){
+ var F=flight(),t0=null,SW=0.3,SLOW=3,pr=phiR();curve=[];landed=null;$("go").disabled=true;
+ function step(ts){if(t0==null)t0=ts;var e=(ts-t0)/1000/SLOW;
+  if(e<SW){var k=e/SW;k=k*k;draw(PHI0+(pr-PHI0)*k,null);requestAnimationFrame(step);return}
+  var t=Math.min(e-SW,F.T),dx=F.v*Math.cos(F.a)*t*100*SC,dy=(F.v*Math.sin(F.a)*t-0.5*G*t*t)*100*SC;
+  var p={x:F.t.x+dx,y:F.t.y-dy};if(t>=F.T)p.y=GY;curve.push([p.x,p.y]);
+  if(t<F.T){draw(pr,p);requestAnimationFrame(step)}else{landed=F.R;
+   var diff=landed-pred;rows.push({a:ARMS[arm][0],p:Math.round(pred),r:Math.round(landed),d:Math.round(diff)});
+   $("res").innerHTML="球真的落在 <b>"+Math.round(landed)+" 公分</b>！和你猜的差了 "+Math.abs(Math.round(diff))+" 公分"+(Math.abs(diff)<=10?" 🎉 好準！":" 想一想：為什麼會有差別？");
+   lastPred=pred;pred=null;$("go").disabled=true;$("tip").textContent="想再試一次嗎？先在地面上點一下，猜猜這一次球會落在哪裡。";tbl();draw(pr,null);save()}}
+ requestAnimationFrame(step)};
+function summary(){$("sm").innerHTML=ARMS.map(function(a){var xs=rows.filter(function(x){return x.a==a[0]}).map(function(x){return x.r});var avg=xs.length?Math.round(xs.reduce(function(p,c){return p+c},0)/xs.length):"—";return"<tr><td>"+a[0]+"</td><td>"+xs.length+"</td><td>"+(xs.join("、")||"—")+"</td><td>"+avg+"</td></tr>"}).join("")}
+function tbl(){summary();$("tb").innerHTML=rows.map(function(x,i){return"<tr><td>"+(i+1)+"</td><td>"+x.a+"</td><td>"+x.p+"</td><td>"+x.r+"</td><td>"+(Math.abs(x.d)<=10?"差不多 👍":(x.d>0?"猜太近了":"猜太遠了"))+"</td></tr>"}).join("")||"<tr><td colspan=5>還沒有紀錄，先去發射一次吧！</td></tr>"}
+function save(){try{localStorage.setItem("catsim1",JSON.stringify({rows:rows,nm:$("nm").value,note:$("note").value}))}catch(e){}}
+
+$("nm").oninput=save;$("note").oninput=save;
+$("rs").onclick=function(){if(confirm("確定清空所有紀錄？")){rows=[];tbl();save()}};
+$("cp").onclick=function(){var t="投石機小實驗室紀錄\n姓名／組別："+$("nm").value+"\n第幾次｜手臂｜我猜｜實際｜差幾公分\n"+rows.map(function(x,i){return[i+1,x.a,x.p,x.r,Math.abs(x.d)].join("｜")}).join("\n")+"\n我的發現："+$("note").value;
+ if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){$("cp").textContent="已複製 ✓"},function(){});setTimeout(function(){$("cp").textContent="複製紀錄"},1800)};
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function sheetHTML(){
+ var th='style="border:1px solid #888;padding:6px 8px;background:#e8f2ee;text-align:center"',td='style="border:1px solid #888;padding:6px 8px;text-align:center"';
+ var r1=rows.length?rows.map(function(x,i){return"<tr><td "+td+">"+(i+1)+"</td><td "+td+">"+esc(x.a)+"</td><td "+td+">"+x.p+"</td><td "+td+">"+x.r+"</td><td "+td+">"+(Math.abs(x.d)<=10?"差不多":(x.d>0?"猜太近了":"猜太遠了"))+"</td></tr>"}).join(""):"<tr><td "+td+" colspan=5>（還沒有紀錄）</td></tr>";
+ var r2=ARMS.map(function(a){var xs=rows.filter(function(x){return x.a==a[0]}).map(function(x){return x.r});var avg=xs.length?Math.round(xs.reduce(function(p,c){return p+c},0)/xs.length):"—";return"<tr><td "+td+">"+a[0]+"</td><td "+td+">"+xs.length+"</td><td "+td+">"+(xs.join("、")||"—")+"</td><td "+td+">"+avg+"</td></tr>"}).join("");
+ return '<div style="font-size:26px;font-weight:700;color:#1f4e3d;margin-bottom:6px">🎯 投石機小實驗室　學習單</div>'+
+ '<div style="font-size:16px;margin-bottom:14px">姓名／組別：'+esc($("nm").value)+'　　日期：'+new Date().toLocaleDateString("zh-TW")+'</div>'+
+ '<div style="font-size:18px;font-weight:700;margin:10px 0 6px">我的實驗紀錄</div><table style="width:100%;border-collapse:collapse;font-size:15px"><tr><th '+th+'>第幾次</th><th '+th+'>用哪支手臂</th><th '+th+'>我猜（公分）</th><th '+th+'>實際（公分）</th><th '+th+'>我猜得…</th></tr>'+r1+'</table>'+
+ '<div style="font-size:18px;font-weight:700;margin:18px 0 6px">三種手臂的平均落點</div><table style="width:100%;border-collapse:collapse;font-size:15px"><tr><th '+th+'>手臂</th><th '+th+'>投了幾次</th><th '+th+'>球落在（公分）</th><th '+th+'>平均（公分）</th></tr>'+r2+'</table>'+
+ '<div style="font-size:18px;font-weight:700;margin:18px 0 6px">我發現了什麼？</div><div style="border:1px solid #888;padding:10px;min-height:90px;font-size:16px;line-height:1.7">'+esc($("note").value).replace(/\n/g,"<br>")+'</div>'}
+function anchorSave(blob,name){var u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+$("prt").onclick=function(){window.print()};if(!(window.claude&&claude.use))$("prt").style.display="inline-block";
+$("pdf").onclick=async function(){
+ var msg=$("pdfmsg"),btn=$("pdf");msg.textContent="學習單製作中，請稍等…";btn.disabled=true;var ov=$("ov");ov.style.display="flex";
+ var box=document.createElement("div");box.style.cssText="position:fixed;left:0;top:0;z-index:-1;width:760px;padding:28px;background:#fff;color:#000;font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif";box.innerHTML=sheetHTML();document.body.appendChild(box);
+ try{
+  var canvas=await html2canvas(box,{scale:2,backgroundColor:"#ffffff"});document.body.removeChild(box);box=null;ov.style.display="none";
+  var img=canvas.toDataURL("image/jpeg",0.92),pdf=new jspdf.jsPDF({unit:"mm",format:"a4"}),w=190,h=canvas.height*w/canvas.width,pages=Math.ceil(h/277);
+  for(var p=0;p<pages;p++){if(p)pdf.addPage();pdf.addImage(img,"JPEG",10,10-p*277,w,h)}
+  var blob=pdf.output("blob"),name="投石機小實驗室學習單.pdf";
+  $("pdfprev").innerHTML='<p class="hint">這是你的學習單預覽：</p><img alt="學習單預覽" style="width:100%;max-width:560px;border:1px solid var(--line);border-radius:8px" src="'+img+'">';
+  var dl=(window.claude&&claude.use)?await claude.use("downloads"):null;
+  if(!dl&&!(window.claude&&claude.use)){anchorSave(blob,name);msg.textContent="✅ 已下載「"+name+"」，請到「下載」資料夾找這個檔案。"}
+  else if(!dl){msg.textContent="這裡不能直接下載。請長按（或在圖片上按右鍵）下面的學習單圖片來儲存，也可以用螢幕截圖。";}
+  else{try{var r=await dl.save({filename:name,data:blob});msg.textContent="✅ 已下載「"+name+"」，請到「下載」資料夾找這個檔案。";}
+   catch(e){msg.textContent=(e&&e.code=="declined")?"你選擇不下載。想要的話，再按一次「下載 PDF 學習單」。":"下載沒有成功。請長按（或按右鍵）下面的學習單圖片來儲存，或用螢幕截圖，也可以按「複製紀錄」貼到別的地方。"}}
+ }catch(e){ov.style.display="none";if(box&&box.parentNode)document.body.removeChild(box);msg.textContent="學習單沒有做成功，請按「複製紀錄」，貼到別的地方保存。"}
+ ov.style.display="none";btn.disabled=false};
+var hc=0;document.querySelector("h1").onclick=function(){hc++;if(hc>=5)$("tpanel").style.display="block"};
+if(/[?&]teacher=1/.test(location.search))$("tpanel").style.display="block";
+setArms();tbl();draw(PHI0);
+</script>
+</body>
+</html>

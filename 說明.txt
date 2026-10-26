@@ -1,0 +1,25 @@
+一臂之力 網站（可放到網路上，不需要登入就能使用）
+
+【資料夾內容】
+  index.html            教案網站首頁
+  catapult-sim.html     投石機小實驗室
+  files/                完整教案 PDF、教案頁面圖片、兩張雷切圖稿（SVG）
+
+整個資料夾要原樣上傳，index.html 與 catapult-sim.html 放在最外層，files 資料夾放在旁邊。
+附錄裡的「完整教案 PDF」「學習單 PDF」「雷切圖稿 SVG」下載，放到網路上之後任何人都能直接下載，不需要登入。
+
+【操作影片】
+  操作影片已經放在 videos/operation.mp4。要換影片的話，用同樣的檔名取代它。
+  影片檔如果超過 25 MB，GitHub 網頁沒辦法直接上傳，請先壓縮，或改用 GitHub Desktop。
+
+【發布方式一：GitHub Pages】
+  1. 在 GitHub 建立新的 repository（Visibility 選 Public）。
+  2. 把整個資料夾的內容上傳（可以直接把所有檔案與資料夾拖進上傳頁面）。
+  3. 到 Settings > Pages，Source 選 Deploy from a branch，Branch 選 main，資料夾選 / (root)，按 Save。
+  4. 幾分鐘後，網址是 https://你的帳號.github.io/repository名稱/
+
+【發布方式二：Netlify Drop】
+  開啟 https://app.netlify.com/drop ，把整個資料夾拖進去，就會得到網址。
+
+【注意】
+  產生 PDF 的功能會從 cdnjs.cloudflare.com 載入程式，使用的電腦需要能連上網路。
